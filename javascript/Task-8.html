@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-8</title>
+    <style>
+        body{
+            background-color: azure;
+        }
+        .container {
+            padding: 5px;
+            border: 2px solid black;
+            text-align: center;
+            width: 400px;
+            height: 570px;
+            margin: 10px auto;
+            background:linear-gradient(pink,rgba(0, 128, 0, 0.278),rgba(255, 255, 0, 0.251));
+        }
+        table {
+            margin: 0 auto;
+        }
+        td {
+            padding: 5px;
+        }
+        label {
+            display: block;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;color: greenyellow;">Registration form</h1>
+    <div class="container">
+        <form id="registrationForm">
+            <table>
+                <tr>
+                    <td><label for="firstname">Firstname</label></td>
+                    <td><input type="text" id="firstname" name="firstname"></td>
+                </tr>
+                <tr>
+                    <td><label for="lastname">Lastname</label></td>
+                    <td><input type="text" id="lastname" name="lastname"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td><input type="text" id="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td><input type="password" id="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td><label for="repassword">Re-enter Password</label></td>
+                    <td><input type="password" id="repassword" name="repassword"></td>
+                </tr>
+                <tr>
+                    <td><label>Gender</label></td>
+                    <td>
+                        <input type="radio" value="Male" name="gender">Male
+                        <input type="radio" value="Female" name="gender">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="age">Age</label></td>
+                    <td><input type="number" id="age" name="age" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td><label for="phone">Ph.no</label></td>
+                    <td><input type="text" id="phone" name="phone"></td>
+                </tr>
+                <tr>
+                    <td><label for="address">Address</label></td>
+                    <td><textarea id="address" name="address"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="state">State</label></td>
+                    <td><input type="text" id="state" name="state"></td>
+                </tr>
+                <tr>
+                    <td><label for="country">Country</label></td>
+                    <td>
+                        <select id="country" name="country">
+                            <option value="India">India</option>
+                            <option value="America">America</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Languages</label></td>
+                    <td>
+                        <input type="checkbox" name="language" value="English">English
+                        <input type="checkbox" name="language" value="Tamil">Tamil
+                        <input type="checkbox" name="language" value="Hindi">Hindi
+                        <input type="checkbox" name="language" value="Telugu">Telugu
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>
+                            <input type="checkbox" id="declare" name="declare"> Here by I declare all the given details are true
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>Login to the <a href="#">Ethnus</a> website</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Register</button>
+                    </td>
+                </tr>
+            </table>
+            <div id="errorMessages" class="error"></div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let errorMessages = [];
+            const firstname = document.getElementById('firstname').value.trim();
+            const lastname = document.getElementById('lastname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const repassword = document.getElementById('repassword').value;
+            const age = document.getElementById('age').value;
+            const phone = document.getElementById('phone').value.trim();
+            const declare = document.getElementById('declare').checked;
+
+            if (!firstname) {
+                errorMessages.push('Firstname is required');
+            }
+            if (!lastname) {
+                errorMessages.push('Lastname is required');
+            }
+            if (!email) {
+                errorMessages.push('Email is required');
+            } else if (!validateEmail(email)) {
+                errorMessages.push('Invalid email format');
+            }
+            if (!password) {
+                errorMessages.push('Password is required');
+            } else if (password.length < 6) {
+                errorMessages.push('Password is too weak');
+            }
+            if (!repassword) {
+                errorMessages.push('Please re-enter your password');
+            } else if (password !== repassword) {
+                errorMessages.push('Passwords do not match');
+            }
+            if (!age) {
+                errorMessages.push('Age is required');
+            }
+            if (!phone) {
+                errorMessages.push('Phone number is required');
+            }
+            if (!declare) {
+                errorMessages.push('You must declare that the details are true');
+            }
+
+            const errorDiv = document.getElementById('errorMessages');
+            errorDiv.innerHTML = '';
+            if (errorMessages.length > 0) {
+                errorDiv.innerHTML = errorMessages.join('<br>');
+            } else {
+                alert('Registration successful!');
+                // Here you can add the form submission logic, e.g., sending data to the server
+            }
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+</body>
+</html>

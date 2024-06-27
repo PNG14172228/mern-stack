@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-3</title>
+    <style>
+        label, input {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .container {
+            border: 1px solid black;
+            width: fit-content;
+            position: relative;
+            margin-top: 200px;
+            margin-left: 450px;
+            padding-top: 10px;
+            padding-bottom: 25px;
+            padding-left: 5px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            min-width: 120px;
+        }
+        #res {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label>First Number</label>
+            <input type="text" placeholder="Enter a number" id="first">
+        </div>
+        <div class="form-group">
+            <label>Second Number</label>
+            <input type="text" placeholder="Enter a number" id="second">
+        </div>
+        <button onclick="mul()">Multiply</button>
+        <button onclick="div()">Divide</button>
+        <div id="res"></div>
+    </div>
+    
+    <script>
+        function mul() {
+            let a = parseFloat(document.getElementById("first").value);
+            let b = parseFloat(document.getElementById("second").value);
+            if (!isNaN(a) && !isNaN(b)) {
+                let mul = a * b;
+                document.getElementById("res").innerHTML = "The result is: " + mul;
+            } else {
+                document.getElementById("res").innerHTML = "Please enter valid numbers.";
+            }
+        }
+
+        function div() {
+            let x = parseFloat(document.getElementById("first").value);
+            let y = parseFloat(document.getElementById("second").value);
+            if (!isNaN(x) && !isNaN(y)) {
+                if (y !== 0) {
+                    let div = x / y;
+                    document.getElementById("res").innerHTML = "The result is: " + div;
+                } else {
+                    document.getElementById("res").innerHTML = "Division by zero is not allowed.";
+                }
+            } else {
+                document.getElementById("res").innerHTML = "Please enter valid numbers.";
+            }
+        }
+    </script>
+</body>
+</html>

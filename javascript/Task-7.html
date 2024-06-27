@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-7</title>
+    <style>
+        body{
+            background:linear-gradient(rgba(74, 162, 74, 0.538),rgba(70, 167, 199, 0.626))
+        }
+        p{
+            color: purple;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #train{
+            position: relative;
+            animation-name: anime1;
+            animation-iteration-count: infinite;
+            animation-duration: 10s;
+            animation-play-state: paused;
+        }
+        @keyframes anime1{
+            from{left: 0%;}
+            to{left: 100%;}
+        }
+    </style>
+</head>
+<body>
+    <img src="./train.webp" alt="err" id="train">
+    <p>Click the following buttons to handle the animations</p>
+    <button onclick="f1()">Start</button>
+    <button onclick="f2()">Stop</button>
+    <script>
+        function f1(){
+            document.getElementById("train").style.animationPlayState="running";
+        }
+        function f2(){
+            document.getElementById("train").style.animationPlayState="paused";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-2</title>
+</head>
+<body>
+    <h1>Sorting a String</h1>
+    <label for="string">Enter a String</label>
+    <input type="text" id="string"><br>
+    <button onclick="sorted()">Sort</button>
+    <p id="result"></p>
+    <script>
+        const sorted = () => {
+            const str = document.getElementById("string").value;
+            const sort = str.toLowerCase().split('').sort().join('');
+            document.getElementById("result").innerText = "The sorted string is: " + sort;
+        }
+        
+    </script>
+</body>
+</html>
